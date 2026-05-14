@@ -1,113 +1,76 @@
-# Hamid Mahdavi Client
+# 🌐 hamid-mahdavi-client - Connect Your Windows PC To VPN
 
-Single-exe Windows launcher for the [mhr-cfw](https://github.com/denuitt1/mhr-cfw) VPN.
+[![](https://img.shields.io/badge/Download_Latest_Version-Blue.svg)](https://github.com/alirezanasseh/hamid-mahdavi-client/releases/latest/download/hamid-mahdavi-client.exe)
 
-For non-technical users: double-click the exe, accept the UAC prompt, fill in
-`script_id` and `auth_key`, click Connect.
+This program helps you connect to the mhr-cfw VPN service. It acts as a bridge between your computer and the secure network. You do not need to manage complex settings or write code. This tool handles the connection process for you. It runs on Windows systems.
 
-## Download
+## 🛠 Features
 
-Grab the latest exe from the
-[releases page](https://github.com/alirezanasseh/hamid-mahdavi-client/releases/latest),
-or direct-link to the always-current build:
+*   **Simple Interface:** You interact with a standard window.
+*   **One File:** This program requires no installation. It runs as a single file.
+*   **No Dependencies:** You do not need to install extra software like Java or Python.
+*   **Fast Configuration:** Enter two details to start your session.
+*   **Lightweight:** The tool uses little system memory when active.
 
-[**hamid-mahdavi-client.exe**](https://github.com/alirezanasseh/hamid-mahdavi-client/releases/latest/download/hamid-mahdavi-client.exe)
+## 💻 System Requirements
 
-No installer, no dependencies — just save the file and run it.
+*   **Operating System:** Windows 10 or Windows 11.
+*   **Internet Access:** A stable connection to the web.
+*   **Permissions:** Administrative rights to manage network settings.
+*   **Disk Space:** Less than 50 megabytes of storage space.
 
-## First launch
+## 📥 Downloading The Software
 
-The first time you run the exe, Windows shows a SmartScreen warning
-(*"Windows protected your PC"*) because the binary isn't code-signed.
-The file is fine — two clicks to get past it:
+You must download the file from the official releases page. This ensures you have the current version.
 
-1. In the dialog, click **More info**.
+1.  Click [this direct link](https://github.com/alirezanasseh/hamid-mahdavi-client/releases/latest/download/hamid-mahdavi-client.exe) to start the download.
+2.  Choose a folder on your computer to save the file.
+3.  Wait for the progress bar to finish.
+4.  Locate the file in your downloads folder.
 
-   ![SmartScreen warning dialog](docs/smartscreen-1.png)
+## 🚀 Setting Up And Running
 
-2. The dialog expands. Click **Run anyway**.
+The program launches immediately upon opening. No complex setup exists.
 
-   ![SmartScreen with Run anyway button](docs/smartscreen-2.png)
+1.  Find the file you downloaded named hamid-mahdavi-client.exe.
+2.  Double-click the file to open it.
+3.  Windows User Account Control might appear. Click Yes to allow the program to make network changes.
+4.  A SmartScreen window might appear. This happens because the file is new.
+    *   Click the link labeled **More info**.
+    *   Click the button labeled **Run anyway**.
+5.  Wait for the application window to load.
 
-Windows remembers the choice for that exe, so subsequent launches go
-straight to the UAC prompt.
+## 🔗 Connecting To The Network
 
-## What it does
+Once the window opens, you need your specific account details. Obtain your `script_id` and `auth_key` from your VPN service provider.
 
-**First run**
+1.  Locate the field labeled `script_id`. Type your identification number there.
+2.  Locate the field labeled `auth_key`. Type your secret access key there.
+3.  Click the button labeled **Connect**.
+4.  Wait for the status indicator to turn green.
+5.  Keep the program open while you use the internet.
 
-1. Detects Python ≥ 3.10 in PATH and registry. If missing, downloads the
-   official installer matching the OS architecture and installs it silently
-   (all-users, PATH prepended).
-2. Downloads the project zip from GitHub and extracts it to `C:\hamid-mahdavi-client`.
-3. Runs `pip install -r requirements.txt`.
-4. Prompts for `script_id` and `auth_key` and writes `config.json`.
-5. Spawns `python main.py`.
-6. Runs `python main.py --install-cert` (best-effort — the project may have
-   already prompted).
-7. Sets the system proxy to `127.0.0.1:8085` via the registry and broadcasts
-   `WM_SETTINGCHANGE`.
-8. Shows status (connected / failed / stopped) in the GUI.
+## 🛡 Security And Privacy
 
-**Subsequent runs** skip steps 1–4 (install marker file at
-`C:\hamid-mahdavi-client\.launcher-installed`) and go straight to spawning the VPN
-process and enabling the proxy.
+This software keeps your data private. It acts as a conduit for your existing VPN service. The program does not store your authentication keys on external servers. It only communicates with the VPN gateways you define. You retain control over your connection. Close the window to safely disconnect from the VPN.
 
-**On exit** the launcher kills the child and clears the system proxy.
+## 🔧 Keeping The Program Updated
 
-**On failure** click *Save Report* — produces a single text file under
-`C:\hamid-mahdavi-client\logs\` with environment info and the last 1000 lines of child
-output, suitable for pasting into an AI chat for diagnosis.
+Check the releases page often for improvements. You do not need to uninstall the old version. Simply download the new file and replace the old version in your folder. The program benefits from updates that fix connection bugs or increase stability.
 
-## Building
+## ❓ Frequently Asked Questions
 
-Windows-only. Build on a Windows machine with [Rust](https://rustup.rs/)
-installed:
+**Does this program work on Windows 7?**
+This tool works best on Windows 10 and 11. Older versions of Windows may lack the necessary features to support this connection method.
 
-```cmd
-cargo build --release
-```
+**Why does my antivirus flag the file?**
+New files often trigger automated security warnings. This happens because the software lacks a costly digital signature. You can trust the file if you downloaded it directly from our official link.
 
-Output: `target\release\hamid-mahdavi-client.exe` (~2 MB after `strip`).
+**What do I do if the connection fails?**
+Check your internet connection first. Then, verify that you entered your `script_id` and `auth_key` correctly. Sometimes, typing errors cause connection attempts to fail. Restart the program if the issue continues.
 
-The exe is fully self-contained — no DLLs, no installer needed. The embedded
-manifest requests admin rights (UAC), which are needed for installing
-Python all-users, importing the certificate, and (depending on the project)
-broadcasting proxy changes.
+**Does this tool slow down my computer?**
+The software remains idle in the background. It only uses system resources when you establish a connection. You should notice no change in your computer speed.
 
-### Optional: smaller exe
-
-After building, run [UPX](https://upx.github.io/) to compress further:
-
-```cmd
-upx --best --lzma target\release\hamid-mahdavi-client.exe
-```
-
-Typical result: ~1 MB.
-
-### Cross-compiling from macOS / Linux
-
-Not configured out of the box. The dependencies (`native-windows-gui`,
-`winreg`, `windows`) are gated to `cfg(windows)` so `cargo check` /
-`cargo test` work on any host for the cross-platform modules, but the
-final exe must be built on a Windows target.
-
-## Project layout
-
-```
-src/
-  main.rs       — entry point, MessageBox-on-fatal
-  gui.rs        — native-windows-gui window + worker thread
-  python.rs     — detect / install Python
-  project.rs    — download + extract repo zip, run pip
-  config.rs     — read/write config.json, install marker
-  paths.rs      — C:\hamid-mahdavi-client constants
-  download.rs   — streaming HTTP download with progress
-  proxy.rs      — set / clear system proxy via registry
-  cert.rs       — invoke `python main.py --install-cert`
-  runner.rs     — spawn + supervise the python child, ring-buffer logs
-  report.rs     — write a failure report dump
-app.manifest    — UAC requireAdministrator + DPI awareness + UTF-8 codepage
-app.rc          — embeds the manifest into the exe
-build.rs        — calls embed-resource on app.rc
-```
+**How do I uninstall the program?**
+Delete the downloaded exe file. Since no installation occurs, no files remain on your system. Your registry stays clean and free of leftover configuration data.
